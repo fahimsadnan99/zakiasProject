@@ -5,14 +5,14 @@ const _ = require("lodash");
 const signup = async (req, res) => {
   
 
-  let User = await UserSchema.findOne({ email: email });
+  let User = await UserSchema.findOne({ email: req.body.email });
 
   if (User) return res.status(400).json({ message: "User Already Exist" });
 
   User = new UserSchema(req.body);
   const Token = await User.generateJWT();
 
-  User.password = await bcrypt.hash(password, 10);
+  User.password = await bcrypt.hash(req.body.password, 10);
   try {
     await User.save();
     return res.status(201).send({
