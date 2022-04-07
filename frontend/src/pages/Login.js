@@ -22,12 +22,9 @@ const Login = () => {
 
   const postData = async (data) => {
     await axios.post('http://localhost:5000/api/user/signUp', data)
-    .then(res => {
-      console.log(res.data)
-    })
-    .catch(err => {
-      console.log(err)
-    }
+      .then(res => {
+        console.log(res.data)
+      })
     
   }
 
@@ -36,7 +33,7 @@ const Login = () => {
     if (data.fname === "" || data.uname === "" || data.email === "" || data.password === "" || data.cpassword === "") {
       window.alert("please Fill Add Field")
     } else if (data.password !== data.cpassword) {
-      window.alert("Password Not Match"));
+      window.alert("Password Not Match");
     } else {
       postData(data)
     }
@@ -113,4 +110,13 @@ const Login = () => {
               onChange={(e) => handleChange(e)}
             />
             <button className="btn btn-success mt-2" onClick={handleSubmit} >
-              S
+              Submit
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default Login
